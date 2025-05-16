@@ -410,7 +410,7 @@ Below you can find a list of the variables resulting from EMHASS computation, sh
 | P_grid_pos | Forecasted power imported from the grid (Watts). This indicates the amount of energy you are expected to draw from the grid when your solar production is insufficient to meet your needs or it is advantageous to consume from the grid. | - |
 | P_grid_neg | Forecasted power exported to the grid (Watts). This indicates the amount of excess solar energy you are expected to send back to the grid during the forecast period. | - |
 | P_batt | Forecasted (dis)charge power load (Watts) for the battery (if installed). If negative it indicates the battery is charging, if positive that the battery is discharging. | sensor.p_batt_forecast |
-| P_grid | Forecasted net power flow between your home and the grid (Watts). This is calculated as P_grid_pos - P_grid_neg. A positive value indicates net export, while a negative value indicates net import. | sensor.p_grid_forecast |
+| P_grid | Forecasted net power flow between your home and the grid (Watts). This is calculated as P_grid_pos + P_grid_neg. A positive value indicates net import, while a negative value indicates net export. | sensor.p_grid_forecast |
 | SOC_opt | Forecasted battery optimized Status Of Charge (SOC) percentage level | sensor.soc_batt_forecast |
 | unit_load_cost | Forecasted cost per unit of energy you pay to the grid (typically "Currency"/kWh). This helps you understand the expected energy cost during the forecast period. | sensor.unit_load_cost |
 | unit_prod_price | Forecasted price you receive for selling excess solar energy back to the grid (typically "Currency"/kWh). This helps you understand the potential income from your solar production. | sensor.unit_prod_price |
@@ -625,7 +625,7 @@ Pull requests are very much accepted on this project. For development, you can f
 
 Some problems may arise from solver-related issues in the Pulp package. It was found that for arm64 architectures (ie. Raspberry Pi4, 64 bits) the default solver is not available. A workaround is to use another solver. The `glpk` solver is an option.
 
-This can be controlled in the configuration file with parameters `lp_solver` and `lp_solver_path`. The options for `lp_solver` are: 'PULP_CBC_CMD', 'GLPK_CMD' and 'COIN_CMD'. If using 'COIN_CMD' as the solver you will need to provide the correct path to this solver in parameter `lp_solver_path`, ex: '/usr/bin/cbc'.
+This can be controlled in the configuration file with parameters `lp_solver` and `lp_solver_path`. The options for `lp_solver` are: 'PULP_CBC_CMD', 'GLPK_CMD', 'HiGHS', and 'COIN_CMD'. If using 'COIN_CMD' as the solver you will need to provide the correct path to this solver in parameter `lp_solver_path`, ex: '/usr/bin/cbc'.
 
 
 ## License
